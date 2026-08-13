@@ -5,14 +5,14 @@ A traffic light system built on an Arduino Uno that behaves like a real intersec
 ## What it does
 
 - Vehicles get a green light by default. Pedestrians see red.
-- Press the button, and the system doesn't just yank the light to red — it goes through a proper transition: green → yellow (warning) → red, the same way a real intersection would.
+- Press the button, and the system doesn't just yank the light to red, it goes through a proper transition: green → yellow (warning) → red, the same way a real intersection would.
 - Once vehicles have stopped, the pedestrian light turns green and a buzzer beeps once to signal it's safe to cross.
 - Near the end of the crossing window, the pedestrian green blinks as a "hurry up" warning, exactly like the countdown walk signals you see on real streets.
 - Then it resets back to vehicle green, and waits for the next request.
 
 ## Why it's built this way
 
-I didn't want this to just be "LED turns on when button is pressed." The point was to actually mimic the logic real traffic engineers use — nobody wants a system that snaps straight from vehicle-green to pedestrian-green with zero warning. That transition logic is really the whole project; the LEDs are just how you see it working.
+I didn't want this to just be "LED turns on when button is pressed." The point was to actually mimic the logic real traffic engineers use, nobody wants a system that snaps straight from vehicle-green to pedestrian-green with zero warning. That transition logic is really the whole project; the LEDs are just how you see it working.
 
 ## Hardware
 
@@ -42,13 +42,13 @@ I didn't want this to just be "LED turns on when button is pressed." The point w
 
 ## How the code actually works
 
-The core trick here is `attachInterrupt()`. Instead of constantly checking "has the button been pressed?" in a loop (which either wastes cycles or makes the whole light system feel sluggish), the Uno just sits and waits — the button press itself interrupts whatever's happening and sets a flag. The main loop checks that flag and reacts almost instantly.
+The core trick here is `attachInterrupt()`. Instead of constantly checking "has the button been pressed?" in a loop (which either wastes cycles or makes the whole light system feel sluggish), the Uno just sits and waits, the button press itself interrupts whatever's happening and sets a flag. The main loop checks that flag and reacts almost instantly.
 
-There's a small debounce window built in too, because mechanical buttons don't switch cleanly — they "bounce" for a few milliseconds and can register as multiple presses if you don't account for it.
+There's a small debounce window built in too, because mechanical buttons don't switch cleanly, they "bounce" for a few milliseconds and can register as multiple presses if you don't account for it.
 
 ## Getting it running
 
-1. Wire up the circuit per the pin table above — LEDs through their resistors, button on pin 2, buzzer on pin 7, everything sharing one common GND rail with the Arduino.
+1. Wire up the circuit per the pin table above, LEDs through their resistors, button on pin 2, buzzer on pin 7, everything sharing one common GND rail with the Arduino.
 2. Open the sketch in Arduino IDE, select Board → Arduino Uno and the correct COM port.
 3. Upload.
 4. Press the button and watch the sequence run.
@@ -76,4 +76,4 @@ The yellow-light delay before pedestrians get the green light isn't a bug or som
 
 ---
 
-Built as a learning project — feedback, forks, and "you wired this wrong" comments are all welcome.
+Built as a learning project - feedback, forks, and "you wired this wrong" comments are all welcome.
